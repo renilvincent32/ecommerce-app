@@ -1,0 +1,28 @@
+server:
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/movie-booking
+    username: user
+    password: password
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: 'true'
+      javax:
+        persistence:
+          validation:
+            mode: none
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:liquibase/changelog.sql

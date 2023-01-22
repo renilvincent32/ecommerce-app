@@ -16,12 +16,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final AuthenticationManager appAuthenticationManager;
-    private final RequestMatcher exclusionMatcher = new AntPathRequestMatcher("/api/v1/auth/**");
+    private final List<RequestMatcher> exclusionMatcher = List.of(
+            new AntPathRequestMatcher("/api/v1/auth/**"),
+            new AntPathRequestMatcher("/api/v1/movie/**"));
 
     public JwtAuthenticationFilter(AuthenticationManager appAuthenticationManager) {
         this.appAuthenticationManager = appAuthenticationManager;
@@ -33,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-        if (!this.exclusionMatcher.matches(request)) {
+        if (this.exclusionMatcher.stream().noneMatch(requestMatcher -> requestMatcher.matches(request))) {
             final String bearerToken = request.getHeader("Authorization");
 
             if (StringUtils.isBlank(bearerToken)) {
