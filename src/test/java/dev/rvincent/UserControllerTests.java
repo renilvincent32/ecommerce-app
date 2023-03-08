@@ -1,9 +1,9 @@
 package dev.rvincent;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.rvincent.controller.MovieController;
-import dev.rvincent.domain.Movie;
-import dev.rvincent.service.MovieService;
+import dev.rvincent.controller.UserController;
+import dev.rvincent.domain.User;
+import dev.rvincent.service.UserService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,30 +17,30 @@ import java.util.UUID;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(MovieController.class)
+@WebMvcTest(UserController.class)
 @Disabled
-public class MovieControllerTests {
+public class UserControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private MovieService movieService;
+    private UserService userService;
 
     @MockBean
     private AuthenticationManager authenticationManager;
 
     @Test
-    void whenActorNameIsEmpty() throws Exception {
-        Movie movie = new Movie(
-                UUID.randomUUID(),
+    void whenLastNameIsEmpty() throws Exception {
+        User user = new User(
                 "Bruce Willis",
-                null,
-                3.4f,
-                "Action");
+                "",
+                "12345",
+                "password",
+                "bruce.willis@gmail.com");
         ObjectMapper objectMapper = new ObjectMapper();
-        String movieJson = objectMapper.writeValueAsString(movie);
-        mockMvc.perform(post("/api/v1/movie").content(movieJson))
+        String userJson = objectMapper.writeValueAsString(user);
+        mockMvc.perform(post("/api/v1/user").content(userJson))
                 .andExpect(status().isNotFound());
     }
 

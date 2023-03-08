@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.rvincent</groupId>
-	<artifactId>movie-booking-app-backend</artifactId>
+	<artifactId>ecommerce-app-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>movie-booking-app-backend</name>
-	<description>Movie Booking Webapp</description>
+	<name>ecommerce-app-backend</name>
+	<description>ECommerce Webapp</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

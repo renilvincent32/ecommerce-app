@@ -1,17 +1,17 @@
 version: '2'
 
 services:
-  movie-app:
-    image: 'movie-app:latest'
+  ecommerce-app:
+    image: 'ecommerce-app:latest'
     build:
       context: .
-    container_name: movie-app
+    container_name: ecommerce-app
     ports:
-      - "8081:8080"
+      - "8080:8080"
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/movie-booking
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/ecommerce-db
       - SPRING_DATASOURCE_USERNAME=user
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_HIBERNATE_DDL_AUTO=validate

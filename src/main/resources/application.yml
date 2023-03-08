@@ -8,7 +8,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/movie-booking
+    url: jdbc:postgresql://localhost:5432/ecommerce-db
     username: user
     password: password
   jpa:

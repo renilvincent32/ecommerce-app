@@ -24,7 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final AuthenticationManager appAuthenticationManager;
     private final List<RequestMatcher> exclusionMatcher = List.of(
             new AntPathRequestMatcher("/api/v1/auth/**"),
-            new AntPathRequestMatcher("/api/v1/movie/**"));
+            new AntPathRequestMatcher("/api/v1/user/**"));
 
     public JwtAuthenticationFilter(AuthenticationManager appAuthenticationManager) {
         this.appAuthenticationManager = appAuthenticationManager;
